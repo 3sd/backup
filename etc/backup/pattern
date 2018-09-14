@@ -1,5 +1,0 @@
-+ /etc
-+ /home
-- /home/*/.local/share/Trash
-+ /var
-- /var/cache
