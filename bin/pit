@@ -1,0 +1,36 @@
+#!/bin/bash
+
+HOSTS=/etc/backup/hosts
+if [ ! -f "$HOSTS" ]; then
+    echo Could not find \'$HOSTS\'
+    exit
+fi
+if [ -z $1 ]; then
+  echo "Please specify the name of the point in time backup folder"
+  exit 1
+fi
+if ! [[ "$2" =~ ^[0-9]+$ ]]; then
+  echo "Please specify the max number of days to keep backups in this folder (or 0 for forever)"
+  exit
+fi
+while read HOST; do
+  DEST_PARENT=/backuechop/$HOST/$1
+  if [ ! -d $DEST_PARENT ]; then
+    mkdir $DEST_PARENT
+  fi
+  if [ "$2" -gt "0" ]; then
+    find $DEST_PARENT -maxdepth 1 -ctime +${2} -exec rm -r '{}' \;
+  fi
+  SOURCE=/backup/$HOST/now
+  if [ ! -d $SOURCE ]; then
+    echo Could not find directory \'$SOURCE\'
+    continue
+  fi
+  DEST=$DEST_PARENT/$(date +%Y%m%dT%H%M)
+  rsync \
+    --stats \
+    --hard-links \
+    --archive \
+    --link-dest=$SOURCE \
+    $SOURCE/ $DEST
+done < $HOSTS

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+BACKUP_PATTERN=/etc/backup/pattern
+if [ ! -f "$BACKUP_PATTERN" ]; then
+    echo Could not find \'$BACKUP_PATTERN\'
+    exit
+fi
+rsync \
+  --archive \
+  --stats \
+  --delete-excluded \
+  --filter="merge /etc/backup/pattern" \
+  --filter="exclude /*" \
+  / /backup/local/now

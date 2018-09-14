@@ -1,0 +1,21 @@
+#!/bin/bash
+
+HOSTS=/etc/backup/hosts
+if [ ! -f "$HOSTS" ]; then
+    echo Could not find \'$HOSTS\'
+    exit
+fi
+
+while read HOST; do
+  DEST=/backup/$HOST/now
+  if
+   [ ! -d $DEST ]; then
+    mkdir -p $DEST
+  fi
+  rsync \
+    --archive \
+    --stats \
+    --delete-excluded \
+    --rsync-path="sudo rsync" \
+    $HOST:/backup/local/now/ /backup/$HOST/now
+done < $HOSTS
