@@ -1,4 +1,6 @@
-# Backed up machines
+# Host configuration
+
+For hosts that are backed up.
 
 Managed by https://github.com/3sd/ansible backed-up role
 
@@ -16,7 +18,9 @@ All directories should be specified relative to the root folder. Folders in the 
 
 See the FILTER RULES section of the rsync man page for more details for more details on how to define the directories to be backed up.
 
-# Backup servers
+# Server configuration
+
+For servers that store backups.
 
 Managed by https://github.com/3sd/ansible backup role.
 
