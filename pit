@@ -14,7 +14,7 @@ if ! [[ "$2" =~ ^[0-9]+$ ]]; then
   exit
 fi
 while read HOST; do
-  DEST_PARENT=/backuechop/$HOST/$1
+  DEST_PARENT=/backup/$HOST/$1
   if [ ! -d $DEST_PARENT ]; then
     mkdir $DEST_PARENT
   fi
