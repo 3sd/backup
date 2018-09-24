@@ -11,4 +11,4 @@ rsync \
   --delete-excluded \
   --filter="merge /etc/backup/pattern" \
   --filter="exclude /*" \
-  / /backup/local/now
+  / /srv/backup/local/now

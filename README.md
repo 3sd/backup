@@ -4,7 +4,7 @@ For hosts that are backed up.
 
 Managed by https://github.com/3sd/ansible backed-up role
 
-Ensure a `etc/backup/pattern` config file is present that describes the files to be backed up. This is passed to rysnc as `--filter="merge /etc/backup/pattern"`.
+Ensure a `/etc/backup/pattern` config file is present that describes the files to be backed up. This is passed to rysnc as `--filter="merge /etc/backup/pattern"`.
 
 ```
 + /etc

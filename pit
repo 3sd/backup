@@ -14,14 +14,14 @@ if ! [[ "$2" =~ ^[0-9]+$ ]]; then
   exit
 fi
 while read HOST; do
-  DEST_PARENT=/backup/$HOST/$1
+  DEST_PARENT=/srv/backup/$HOST/$1
   if [ ! -d $DEST_PARENT ]; then
     mkdir $DEST_PARENT
   fi
   if [ "$2" -gt "0" ]; then
     find $DEST_PARENT -maxdepth 1 -ctime +${2} -exec rm -r '{}' \;
   fi
-  SOURCE=/backup/$HOST/now
+  SOURCE=/srv/backup/$HOST/now
   if [ ! -d $SOURCE ]; then
     echo Could not find directory \'$SOURCE\'
     continue

@@ -7,7 +7,7 @@ if [ ! -f "$HOSTS" ]; then
 fi
 
 while read HOST; do
-  DEST=/backup/$HOST/now
+  DEST=/srv/backup/$HOST/now
   if
    [ ! -d $DEST ]; then
     mkdir -p $DEST
@@ -17,5 +17,5 @@ while read HOST; do
     --stats \
     --delete-excluded \
     --rsync-path="sudo rsync" \
-    $HOST:/backup/local/now/ /backup/$HOST/now
+    $HOST:/srv/backup/local/now/ /srv/backup/$HOST/now
 done < $HOSTS
