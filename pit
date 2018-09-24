@@ -14,6 +14,7 @@ if ! [[ "$2" =~ ^[0-9]+$ ]]; then
   exit
 fi
 while read HOST; do
+  echo $HOST
   DEST_PARENT=/srv/backup/$HOST/$1
   if [ ! -d $DEST_PARENT ]; then
     mkdir $DEST_PARENT
@@ -31,6 +32,6 @@ while read HOST; do
     --stats \
     --hard-links \
     --archive \
-    --link-dest=$SOURCE \
+    --link-dest=$SOURCE \zsh/blob/master/main.sh
     $SOURCE/ $DEST
 done < $HOSTS

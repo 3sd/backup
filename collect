@@ -7,6 +7,7 @@ if [ ! -f "$HOSTS" ]; then
 fi
 
 while read HOST; do
+  echo $HOST
   DEST=/srv/backup/$HOST/now
   if
    [ ! -d $DEST ]; then
