@@ -32,6 +32,6 @@ while read HOST; do
     --stats \
     --hard-links \
     --archive \
-    --link-dest=$SOURCE \zsh/blob/master/main.sh
+    --link-dest=$SOURCE \
     $SOURCE/ $DEST
 done < $HOSTS
