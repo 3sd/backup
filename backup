@@ -8,6 +8,7 @@ fi
 rsync \
   --archive \
   --stats \
+  --delete \
   --delete-excluded \
   --filter="merge /etc/backup/pattern" \
   --filter="exclude /*" \

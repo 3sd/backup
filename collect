@@ -16,6 +16,7 @@ while read HOST; do
   rsync \
     --archive \
     --stats \
+    --delete \
     --delete-excluded \
     --rsync-path="sudo rsync" \
     $HOST:/srv/backup/local/now/ /srv/backup/$HOST/now
